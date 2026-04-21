@@ -1,0 +1,5 @@
+Model,MAE,RMSE,R2
+Baseline 1: Last Year's Value,3.1387,9.8489,-0.9988
+Baseline 2: Historical Average,2.511,7.217,-0.0733
+Baseline 3: Global Mean,2.3447,7.0782,-0.0324
+Model 1: Ridge Linear Regression,0.1285,0.2739,0.9985
