@@ -18,7 +18,7 @@ import numpy as np
 primary = pd.read_csv("tech_employment_2000_2025.csv")
 primary["layoff_pct"] = primary["layoffs"] / primary["employees_start"] * 100
 
-events = pd.read_csv("/mnt/user-data/uploads/layoffs.csv")
+events = pd.read_csv("layoffs.csv")
 events["date"] = pd.to_datetime(events["date"], errors="coerce")
 events["year"] = events["date"].dt.year
 

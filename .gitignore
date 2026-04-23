@@ -1,0 +1,3 @@
+.venv
+presentation/__pycache__/*
+presentation/lightning_logs

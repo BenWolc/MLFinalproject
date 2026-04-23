@@ -2,10 +2,13 @@
 Preprocessing script for Tech Hiring and Layoffs Dataset (2000-2025)
 CS 4774 Final Project
 
+Target: predict NEXT year's layoff percentage for a given company,
+        using the current year's features as input.
+
 Outputs:
   - processed_data.csv        : fully preprocessed dataset (all features)
   - X_train.csv, X_test.csv   : feature matrices (time-aware split)
-  - y_train.csv, y_test.csv   : target vectors (layoff_pct)
+  - y_train.csv, y_test.csv   : target vectors (layoff_pct_next)
 """
 
 import pandas as pd
@@ -16,9 +19,9 @@ from sklearn.preprocessing import LabelEncoder, StandardScaler
 df = pd.read_csv("tech_employment_2000_2025.csv")
 print(f"Loaded: {df.shape[0]} rows × {df.shape[1]} cols")
 
-# ── 2. Target variable ─────────────────────────────────────────────────────────
-# We predict PERCENTAGE of workforce laid off (as recommended by professor feedback)
-# This accounts for differences in company size (e.g. 10k layoffs at Amazon vs a startup)
+# ── 2. Current-year layoff rate (kept as a FEATURE, not the target) ────────────
+# We still compute layoff_pct for the current year — it will serve as a
+# predictor (alongside the lag features) when forecasting the next year.
 df["layoff_pct"] = df["layoffs"] / df["employees_start"] * 100
 
 # Sanity check: flag any extreme outliers
@@ -27,8 +30,20 @@ if not outliers.empty:
     print(f"\n⚠  {len(outliers)} row(s) with layoff_pct > 50%:")
     print(outliers[["company", "year", "layoffs", "employees_start", "layoff_pct"]])
 
-# ── 3. Derived / engineered features ──────────────────────────────────────────
-# These capture dynamics the raw columns don't directly express
+# ── 3. Target variable: NEXT year's layoff percentage ─────────────────────────
+# Shift layoff_pct one step into the future within each company group.
+# A row for year Y will have layoff_pct_next = layoff_pct of year Y+1.
+# The final year for each company will be NaN (no future known) and is
+# dropped later at split time.
+df = df.sort_values(["company", "year"]).reset_index(drop=True)
+
+df["layoff_pct_next"] = df.groupby("company")["layoff_pct"].shift(-1)
+
+print(f"\nRows with NaN target (last year per company): "
+      f"{df['layoff_pct_next'].isna().sum()}")
+
+# ── 4. Derived / engineered features ──────────────────────────────────────────
+# These capture dynamics the raw columns don't directly express.
 
 # Workforce growth rate year-over-year (how fast was the company expanding?)
 df["workforce_growth_pct"] = (
@@ -44,11 +59,10 @@ df["revenue_per_employee"] = (
     df["revenue_billions_usd"] * 1e9 / df["employees_start"]
 )
 
-# ── 4. Lag features (previous year's data for the same company) ────────────────
-# These are critical for time series-aware models and the baseline strategies.
-# We sort first so shift() works correctly within each company group.
-df = df.sort_values(["company", "year"]).reset_index(drop=True)
-
+# ── 5. Lag features (previous year's data for the same company) ────────────────
+# Lag features give the model historical context. Sorting is already done above.
+# Note: layoff_pct_lag1 is the year *before* the input row, while the target
+# (layoff_pct_next) is the year *after* — so no leakage.
 for col in ["layoff_pct", "employees_start", "revenue_billions_usd",
             "stock_price_change_pct", "new_hires"]:
     df[f"{col}_lag1"] = df.groupby("company")[col].shift(1)
@@ -56,19 +70,19 @@ for col in ["layoff_pct", "employees_start", "revenue_billions_usd",
 print(f"\nRows with NaN lag features (first year per company): "
       f"{df['layoff_pct_lag1'].isna().sum()}")
 
-# ── 5. Encode categorical columns ──────────────────────────────────────────────
+# ── 6. Encode categorical columns ──────────────────────────────────────────────
 
-# 5a. One-hot encode company (25 companies → 25 binary columns)
+# 6a. One-hot encode company (25 companies → 25 binary columns)
 df = pd.get_dummies(df, columns=["company"], prefix="co")
 
-# 5b. Ordinal encode confidence_level  (Medium=0, High=1)
+# 6b. Ordinal encode confidence_level  (Medium=0, High=1)
 df["confidence_level"] = df["confidence_level"].map({"Medium": 0, "High": 1})
 
-# 5c. is_estimated is already bool → cast to int (False=0, True=1)
+# 6c. is_estimated is already bool → cast to int (False=0, True=1)
 df["is_estimated"] = df["is_estimated"].astype(int)
 
-# ── 6. Drop columns we won't use as model features ────────────────────────────
-# - layoffs (raw count) is replaced by layoff_pct
+# ── 7. Drop columns we won't use as model features ────────────────────────────
+# - layoffs (raw count) is replaced by layoff_pct (which is now a feature)
 # - net_change / employees_end are downstream of layoffs (data leakage risk)
 # - attrition_rate_pct is derived from layoffs (also leakage)
 # - data_quality_score has essentially no variance — won't help
@@ -78,14 +92,21 @@ df = df.drop(columns=["layoffs", "net_change", "employees_end",
 print(f"\nFinal columns ({len(df.columns)}):")
 print(df.columns.tolist())
 
-# ── 7. Time-aware train/test split ────────────────────────────────────────────
+# ── 8. Time-aware train/test split ────────────────────────────────────────────
 # IMPORTANT: never train on future years — that would be data leakage.
-# Train on 2001–2019, test on 2020–2025.
-# This also naturally captures the COVID + post-pandemic layoff wave in the test set.
-SPLIT_YEAR = 2020
+#
+# We want the test set to predict layoffs in years 2020–2025 (COVID wave +
+# post-pandemic). Because each row predicts the *next* year, the input rows
+# that produce 2020+ predictions have year >= 2019.
+#
+#   Train: input year 2001–2018  →  predicts layoff_pct for 2002–2019
+#   Test:  input year 2019–2024  →  predicts layoff_pct for 2020–2025
+#
+# (2025 target rows are naturally absent since there is no 2026 data to shift in.)
+SPLIT_YEAR = 2019   # rows with year < SPLIT_YEAR go to train
 
-target = "layoff_pct"
-feature_cols = [c for c in df.columns if c not in [target, "year"]]
+target = "layoff_pct_next"
+feature_cols = [c for c in df.columns if c != target]
 
 train = df[df["year"] < SPLIT_YEAR].dropna(subset=feature_cols + [target])
 test  = df[df["year"] >= SPLIT_YEAR].dropna(subset=feature_cols + [target])
@@ -95,11 +116,13 @@ y_train = train[target]
 X_test  = test[feature_cols]
 y_test  = test[target]
 
-print(f"\nTrain: {len(train)} rows ({train['year'].min()}–{train['year'].max()})")
-print(f"Test:  {len(test)} rows  ({test['year'].min()}–{test['year'].max()})")
+print(f"\nTrain: {len(train)} rows  (input years {train['year'].min()}–{train['year'].max()}"
+      f" → predicts {train['year'].min()+1}–{train['year'].max()+1})")
+print(f"Test:  {len(test)} rows   (input years {test['year'].min()}–{test['year'].max()}"
+      f" → predicts {test['year'].min()+1}–{test['year'].max()+1})")
 
-# ── 8. Feature scaling (L2 / StandardScaler) ──────────────────────────────────
-# Scale numeric columns only (leave one-hot columns as-is)
+# ── 9. Feature scaling (StandardScaler) ───────────────────────────────────────
+# Scale numeric columns only (leave one-hot columns as-is).
 numeric_cols = X_train.select_dtypes(include=[np.number]).columns.tolist()
 
 # Identify one-hot company columns (already 0/1, no need to scale)
@@ -113,7 +136,7 @@ X_test[scale_cols]  = scaler.transform(X_test[scale_cols])   # use train stats!
 print(f"\nScaled {len(scale_cols)} numeric features.")
 print(f"Left {len(onehot_cols)} one-hot company features unscaled.")
 
-# ── 9. Save outputs ────────────────────────────────────────────────────────────
+# ── 10. Save outputs ───────────────────────────────────────────────────────────
 df.to_csv("processed_data.csv", index=False)
 X_train.to_csv("X_train.csv", index=False)
 X_test.to_csv("X_test.csv",  index=False)

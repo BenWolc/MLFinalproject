@@ -98,7 +98,7 @@ results.append(report(
 # Uses RidgeCV to automatically pick the best regularization strength (alpha)
 # via cross-validation on the training set.
 # ══════════════════════════════════════════════════════════════════════════════
-alphas = [0.01, 0.1, 1.0, 10.0, 100.0, 1000.0]
+alphas = [0.1]
 ridge = RidgeCV(alphas=alphas, cv=5)
 ridge.fit(X_train, y_train)
 
