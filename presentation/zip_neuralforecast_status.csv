@@ -1,0 +1,2 @@
+source_file,status,reason
+nf.py,skipped,neuralforecast not installed

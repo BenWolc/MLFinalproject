@@ -1,0 +1,34 @@
+FULL MODEL AUDIT SUMMARY
+================================================================================
+
+1) Best actual repo regression model
+   Model: Repo Model 3: XGBoost reg_lambda=100
+   Source file: xgb.py
+   MAE: 0.3470 percentage points
+   RMSE: 0.6068 percentage points
+   Note: this is the actual project repo model logic on the repo's X/y split.
+
+2) Best actual repo classification model
+   Best ROC AUC model: Repo next_year.py: XGBoost Classifier
+   ROC AUC: 1.0000
+   F1 for that model: 0.0784
+   Best F1 model: Repo next_year.py: SVM
+   F1: 0.0816
+   Note: high AUC but low F1 can happen when positives are rare; inspect precision/recall.
+
+3) Best broad / optimal model from the expanded model zoo
+   Model: Empirical Bayes company-history model
+   Walk-forward CV MAE: 1.5455 percentage points
+   Walk-forward CV RMSE: 2.8019 percentage points
+   Note: this is the fairest result for time-based forecasting because it averages over many historical years.
+
+4) Best model on final held-out test from broad zoo
+   Model: Baseline: global median
+   MAE: 0.1250 percentage points
+   Caveat: final test has only estimated target rows, so this may reward predicting the dataset's default estimated value.
+
+5) Recommended interpretation
+   - Use the repo regression comparison to report how your team's actual implemented models perform.
+   - Use the broad walk-forward CV comparison to discuss whether simple historical models or complex ML generalize better.
+   - Do not rely only on the final 2023-2024 test set if it contains estimated labels only.
+   - If the repo XGBoost result is much better than walk-forward CV models, mention that the repo split/preprocessing differs and should be checked for leakage.

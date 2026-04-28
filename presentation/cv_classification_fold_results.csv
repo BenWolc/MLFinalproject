@@ -1,0 +1,103 @@
+eval_year,n_test,model,group,source,status,ROC_AUC,F1,precision,recall,accuracy,positive_rate
+2006,18,Repo Logistic Regression,Repo classification,next_year.py,ok,0.3529411764705882,0.0,0.0,0.0,0.8888888888888888,0.05555555555555555
+2006,18,Repo Random Forest Classifier,Repo classification,next_year.py,ok,1.0,0.0,0.0,0.0,0.9444444444444444,0.05555555555555555
+2006,18,Repo Gradient Boosting Classifier,Repo classification,next_year.py,ok,0.9411764705882353,0.0,0.0,0.0,0.9444444444444444,0.05555555555555555
+2006,18,Repo XGBoost Classifier,Repo classification,next_year.py,ok,0.9411764705882353,0.0,0.0,0.0,0.9444444444444444,0.05555555555555555
+2006,18,Repo SVM,Repo classification,next_year.py,ok,0.9411764705882353,0.0,0.0,0.0,0.8888888888888888,0.05555555555555555
+2006,18,Broad Logistic Regression balanced,Broad classification,recommended comparison,ok,0.17647058823529416,0.0,0.0,0.0,0.9444444444444444,0.05555555555555555
+2007,18,Repo Logistic Regression,Repo classification,next_year.py,ok,,0.10526315789473684,1.0,0.05555555555555555,0.05555555555555555,1.0
+2007,18,Repo Random Forest Classifier,Repo classification,next_year.py,ok,,0.10526315789473684,1.0,0.05555555555555555,0.05555555555555555,1.0
+2007,18,Repo Gradient Boosting Classifier,Repo classification,next_year.py,ok,,0.10526315789473684,1.0,0.05555555555555555,0.05555555555555555,1.0
+2007,18,Repo XGBoost Classifier,Repo classification,next_year.py,ok,,0.10526315789473684,1.0,0.05555555555555555,0.05555555555555555,1.0
+2007,18,Repo SVM,Repo classification,next_year.py,ok,,0.2,1.0,0.1111111111111111,0.1111111111111111,1.0
+2007,18,Broad Logistic Regression balanced,Broad classification,recommended comparison,ok,,0.10526315789473684,1.0,0.05555555555555555,0.05555555555555555,1.0
+2008,18,Repo Logistic Regression,Repo classification,next_year.py,ok,,1.0,1.0,1.0,1.0,1.0
+2008,18,Repo Random Forest Classifier,Repo classification,next_year.py,ok,,0.2,1.0,0.1111111111111111,0.1111111111111111,1.0
+2008,18,Repo Gradient Boosting Classifier,Repo classification,next_year.py,ok,,0.10526315789473684,1.0,0.05555555555555555,0.05555555555555555,1.0
+2008,18,Repo XGBoost Classifier,Repo classification,next_year.py,ok,,0.10526315789473684,1.0,0.05555555555555555,0.05555555555555555,1.0
+2008,18,Repo SVM,Repo classification,next_year.py,ok,,1.0,1.0,1.0,1.0,1.0
+2008,18,Broad Logistic Regression balanced,Broad classification,recommended comparison,ok,,1.0,1.0,1.0,1.0,1.0
+2009,19,Repo Logistic Regression,Repo classification,next_year.py,ok,0.8888888888888888,0.11764705882352941,0.0625,1.0,0.21052631578947367,0.05263157894736842
+2009,19,Repo Random Forest Classifier,Repo classification,next_year.py,ok,0.6111111111111112,0.1,0.05263157894736842,1.0,0.05263157894736842,0.05263157894736842
+2009,19,Repo Gradient Boosting Classifier,Repo classification,next_year.py,ok,0.9444444444444444,0.1,0.05263157894736842,1.0,0.05263157894736842,0.05263157894736842
+2009,19,Repo XGBoost Classifier,Repo classification,next_year.py,ok,0.05555555555555558,0.1,0.05263157894736842,1.0,0.05263157894736842,0.05263157894736842
+2009,19,Repo SVM,Repo classification,next_year.py,ok,0.9444444444444444,0.1,0.05263157894736842,1.0,0.05263157894736842,0.05263157894736842
+2009,19,Broad Logistic Regression balanced,Broad classification,recommended comparison,ok,0.7222222222222222,0.1,0.05263157894736842,1.0,0.05263157894736842,0.05263157894736842
+2010,21,Repo Logistic Regression,Repo classification,next_year.py,ok,,0.0,0.0,0.0,1.0,0.0
+2010,21,Repo Random Forest Classifier,Repo classification,next_year.py,ok,,0.0,0.0,0.0,0.9523809523809523,0.0
+2010,21,Repo Gradient Boosting Classifier,Repo classification,next_year.py,ok,,0.0,0.0,0.0,0.9047619047619048,0.0
+2010,21,Repo XGBoost Classifier,Repo classification,next_year.py,ok,,0.0,0.0,0.0,0.9523809523809523,0.0
+2010,21,Repo SVM,Repo classification,next_year.py,ok,,0.0,0.0,0.0,0.8571428571428571,0.0
+2010,21,Broad Logistic Regression balanced,Broad classification,recommended comparison,ok,,0.0,0.0,0.0,1.0,0.0
+2011,23,Repo Logistic Regression,Repo classification,next_year.py,ok,0.35714285714285715,0.0,0.0,0.0,0.9130434782608695,0.08695652173913043
+2011,23,Repo Random Forest Classifier,Repo classification,next_year.py,ok,0.04761904761904767,0.0,0.0,0.0,0.8260869565217391,0.08695652173913043
+2011,23,Repo Gradient Boosting Classifier,Repo classification,next_year.py,ok,0.5595238095238095,0.16666666666666666,0.1,0.5,0.5652173913043478,0.08695652173913043
+2011,23,Repo XGBoost Classifier,Repo classification,next_year.py,ok,0.6666666666666666,0.16,0.08695652173913043,1.0,0.08695652173913043,0.08695652173913043
+2011,23,Repo SVM,Repo classification,next_year.py,ok,0.5952380952380952,0.0,0.0,0.0,0.782608695652174,0.08695652173913043
+2011,23,Broad Logistic Regression balanced,Broad classification,recommended comparison,ok,0.47619047619047616,0.0,0.0,0.0,0.8695652173913043,0.08695652173913043
+2012,24,Repo Logistic Regression,Repo classification,next_year.py,ok,0.6136363636363636,0.0,0.0,0.0,0.9166666666666666,0.08333333333333333
+2012,24,Repo Random Forest Classifier,Repo classification,next_year.py,ok,0.5909090909090909,0.0,0.0,0.0,0.9166666666666666,0.08333333333333333
+2012,24,Repo Gradient Boosting Classifier,Repo classification,next_year.py,ok,0.45454545454545453,0.0,0.0,0.0,0.9166666666666666,0.08333333333333333
+2012,24,Repo XGBoost Classifier,Repo classification,next_year.py,ok,0.7045454545454545,0.0,0.0,0.0,0.9166666666666666,0.08333333333333333
+2012,24,Repo SVM,Repo classification,next_year.py,ok,0.5454545454545454,0.0,0.0,0.0,0.9166666666666666,0.08333333333333333
+2012,24,Broad Logistic Regression balanced,Broad classification,recommended comparison,ok,0.75,0.0,0.0,0.0,0.9166666666666666,0.08333333333333333
+2013,25,Repo Logistic Regression,Repo classification,next_year.py,ok,0.7916666666666666,0.0,0.0,0.0,0.96,0.04
+2013,25,Repo Random Forest Classifier,Repo classification,next_year.py,ok,0.9583333333333334,0.0,0.0,0.0,0.96,0.04
+2013,25,Repo Gradient Boosting Classifier,Repo classification,next_year.py,ok,1.0,0.0,0.0,0.0,0.96,0.04
+2013,25,Repo XGBoost Classifier,Repo classification,next_year.py,ok,1.0,1.0,1.0,1.0,1.0,0.04
+2013,25,Repo SVM,Repo classification,next_year.py,ok,0.9583333333333334,0.0,0.0,0.0,0.96,0.04
+2013,25,Broad Logistic Regression balanced,Broad classification,recommended comparison,ok,1.0,1.0,1.0,1.0,1.0,0.04
+2014,25,Repo Logistic Regression,Repo classification,next_year.py,ok,1.0,0.2857142857142857,0.16666666666666666,1.0,0.8,0.04
+2014,25,Repo Random Forest Classifier,Repo classification,next_year.py,ok,0.875,0.0,0.0,0.0,0.92,0.04
+2014,25,Repo Gradient Boosting Classifier,Repo classification,next_year.py,ok,0.9583333333333333,0.0,0.0,0.0,0.92,0.04
+2014,25,Repo XGBoost Classifier,Repo classification,next_year.py,ok,0.9583333333333334,0.0,0.0,0.0,0.92,0.04
+2014,25,Repo SVM,Repo classification,next_year.py,ok,0.41666666666666663,0.0,0.0,0.0,0.92,0.04
+2014,25,Broad Logistic Regression balanced,Broad classification,recommended comparison,ok,0.9583333333333334,0.08333333333333333,0.043478260869565216,1.0,0.12,0.04
+2015,25,Repo Logistic Regression,Repo classification,next_year.py,ok,0.6515151515151514,0.16666666666666666,0.1111111111111111,0.3333333333333333,0.6,0.12
+2015,25,Repo Random Forest Classifier,Repo classification,next_year.py,ok,0.8484848484848484,0.0,0.0,0.0,0.88,0.12
+2015,25,Repo Gradient Boosting Classifier,Repo classification,next_year.py,ok,0.7348484848484849,0.0,0.0,0.0,0.88,0.12
+2015,25,Repo XGBoost Classifier,Repo classification,next_year.py,ok,0.803030303030303,0.8,1.0,0.6666666666666666,0.96,0.12
+2015,25,Repo SVM,Repo classification,next_year.py,ok,0.9242424242424242,0.0,0.0,0.0,0.88,0.12
+2015,25,Broad Logistic Regression balanced,Broad classification,recommended comparison,ok,0.6212121212121212,0.23076923076923078,0.13043478260869565,1.0,0.2,0.12
+2016,25,Repo Logistic Regression,Repo classification,next_year.py,ok,0.7826086956521738,0.25,0.16666666666666666,0.5,0.76,0.08
+2016,25,Repo Random Forest Classifier,Repo classification,next_year.py,ok,0.9347826086956522,0.0,0.0,0.0,0.88,0.08
+2016,25,Repo Gradient Boosting Classifier,Repo classification,next_year.py,ok,0.8478260869565217,0.5,0.5,0.5,0.92,0.08
+2016,25,Repo XGBoost Classifier,Repo classification,next_year.py,ok,0.8478260869565217,0.16,0.08695652173913043,1.0,0.16,0.08
+2016,25,Repo SVM,Repo classification,next_year.py,ok,0.6956521739130435,0.0,0.0,0.0,0.88,0.08
+2016,25,Broad Logistic Regression balanced,Broad classification,recommended comparison,ok,0.6304347826086956,0.16666666666666666,0.1,0.5,0.6,0.08
+2017,25,Repo Logistic Regression,Repo classification,next_year.py,ok,,0.0,0.0,0.0,0.96,0.0
+2017,25,Repo Random Forest Classifier,Repo classification,next_year.py,ok,,0.0,0.0,0.0,0.96,0.0
+2017,25,Repo Gradient Boosting Classifier,Repo classification,next_year.py,ok,,0.0,0.0,0.0,0.92,0.0
+2017,25,Repo XGBoost Classifier,Repo classification,next_year.py,ok,,0.0,0.0,0.0,0.92,0.0
+2017,25,Repo SVM,Repo classification,next_year.py,ok,,0.0,0.0,0.0,0.96,0.0
+2017,25,Broad Logistic Regression balanced,Broad classification,recommended comparison,ok,,0.0,0.0,0.0,0.84,0.0
+2018,25,Repo Logistic Regression,Repo classification,next_year.py,ok,,0.0,0.0,0.0,0.04,0.0
+2018,25,Repo Random Forest Classifier,Repo classification,next_year.py,ok,,0.0,0.0,0.0,1.0,0.0
+2018,25,Repo Gradient Boosting Classifier,Repo classification,next_year.py,ok,,0.0,0.0,0.0,0.88,0.0
+2018,25,Repo XGBoost Classifier,Repo classification,next_year.py,ok,,0.0,0.0,0.0,0.8,0.0
+2018,25,Repo SVM,Repo classification,next_year.py,ok,,0.0,0.0,0.0,0.92,0.0
+2018,25,Broad Logistic Regression balanced,Broad classification,recommended comparison,ok,,0.0,0.0,0.0,0.0,0.0
+2019,25,Repo Logistic Regression,Repo classification,next_year.py,ok,0.12121212121212122,0.0,0.0,0.0,0.88,0.12
+2019,25,Repo Random Forest Classifier,Repo classification,next_year.py,ok,0.19696969696969693,0.0,0.0,0.0,0.88,0.12
+2019,25,Repo Gradient Boosting Classifier,Repo classification,next_year.py,ok,0.1893939393939394,0.0,0.0,0.0,0.88,0.12
+2019,25,Repo XGBoost Classifier,Repo classification,next_year.py,ok,0.09090909090909086,0.0,0.0,0.0,0.88,0.12
+2019,25,Repo SVM,Repo classification,next_year.py,ok,0.409090909090909,0.0,0.0,0.0,0.88,0.12
+2019,25,Broad Logistic Regression balanced,Broad classification,recommended comparison,ok,0.06060606060606059,0.0,0.0,0.0,0.88,0.12
+2020,25,Repo Logistic Regression,Repo classification,next_year.py,ok,,0.0,0.0,0.0,0.76,0.0
+2020,25,Repo Random Forest Classifier,Repo classification,next_year.py,ok,,0.0,0.0,0.0,1.0,0.0
+2020,25,Repo Gradient Boosting Classifier,Repo classification,next_year.py,ok,,0.0,0.0,0.0,0.96,0.0
+2020,25,Repo XGBoost Classifier,Repo classification,next_year.py,ok,,0.0,0.0,0.0,0.96,0.0
+2020,25,Repo SVM,Repo classification,next_year.py,ok,,0.0,0.0,0.0,1.0,0.0
+2020,25,Broad Logistic Regression balanced,Broad classification,recommended comparison,ok,,0.0,0.0,0.0,0.56,0.0
+2021,25,Repo Logistic Regression,Repo classification,next_year.py,ok,,0.0,0.0,0.0,0.0,1.0
+2021,25,Repo Random Forest Classifier,Repo classification,next_year.py,ok,,0.0,0.0,0.0,0.0,1.0
+2021,25,Repo Gradient Boosting Classifier,Repo classification,next_year.py,ok,,0.0,0.0,0.0,0.0,1.0
+2021,25,Repo XGBoost Classifier,Repo classification,next_year.py,ok,,0.0,0.0,0.0,0.0,1.0
+2021,25,Repo SVM,Repo classification,next_year.py,ok,,0.0,0.0,0.0,0.0,1.0
+2021,25,Broad Logistic Regression balanced,Broad classification,recommended comparison,ok,,0.0,0.0,0.0,0.0,1.0
+2022,25,Repo Logistic Regression,Repo classification,next_year.py,ok,,1.0,1.0,1.0,1.0,1.0
+2022,25,Repo Random Forest Classifier,Repo classification,next_year.py,ok,,1.0,1.0,1.0,1.0,1.0
+2022,25,Repo Gradient Boosting Classifier,Repo classification,next_year.py,ok,,1.0,1.0,1.0,1.0,1.0
+2022,25,Repo XGBoost Classifier,Repo classification,next_year.py,ok,,0.9795918367346939,1.0,0.96,0.96,1.0
+2022,25,Repo SVM,Repo classification,next_year.py,ok,,0.0,0.0,0.0,0.0,1.0
+2022,25,Broad Logistic Regression balanced,Broad classification,recommended comparison,ok,,1.0,1.0,1.0,1.0,1.0

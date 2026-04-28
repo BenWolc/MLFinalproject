@@ -1,0 +1,24 @@
+CV MAE MODEL AUDIT SUMMARY
+================================================================================
+All regression models were evaluated with the same walk-forward CV method.
+Target unit: next-year layoff percentage points.
+Evaluation years: 2006 to 2022.
+Exclude estimated target rows: False.
+
+Best regression model by CV MAE:
+  Recommended: Empirical Bayes company-history (Recommended)
+  CV MAE = 1.5969 percentage points
+  CV RMSE = 2.8791 percentage points
+  Folds = 17
+
+Classification models are not ranked by MAE because they predict classes, not percentages.
+Best classifier by CV ROC AUC: Repo Gradient Boosting Classifier | AUC = 0.7367 | F1 = 0.1163
+Best classifier by CV F1: Broad Logistic Regression balanced | F1 = 0.2168 | AUC = 0.5995
+
+Output files:
+  cv_mae_all_models_fold_results.csv
+  cv_mae_all_models_summary.csv
+  cv_mae_all_model_predictions.csv
+  cv_classification_fold_results.csv
+  cv_classification_summary.csv
+  cv_mae_audit_summary.txt

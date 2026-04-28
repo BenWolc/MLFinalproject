@@ -1,0 +1,7 @@
+model,source_file,threshold_pct,Test_ROC_AUC,Test_F1,Test_Precision,Test_Recall,Test_Accuracy,Test_positive_rate,CV_ROC_AUC,CV_F1
+Repo next_year.py: Random Forest,next_year.py,3.0,0.9479166666666666,0.0769230769230769,0.04,1.0,0.04,0.04,0.9490040208166328,0.85171244230756
+Repo next_year.py: XGBoost Classifier,next_year.py,3.0,1.0,0.0784313725490196,0.0408163265306122,1.0,0.06,0.04,0.9423643451540252,0.8727225672877849
+Repo next_year.py: Gradient Boosting,next_year.py,3.0,0.9791666666666669,0.0769230769230769,0.04,1.0,0.04,0.04,0.9386924075275797,0.8882291529007533
+Repo next_year.py: Logistic Regression,next_year.py,3.0,0.7916666666666666,0.0769230769230769,0.04,1.0,0.04,0.04,0.8271333549643088,0.5890065197959935
+Repo next_year.py: SVM,next_year.py,3.0,0.9583333333333331,0.0816326530612244,0.0425531914893617,1.0,0.1,0.04,0.8270284606379864,0.5972771672771672
+Repo logreg.py: LogisticRegressionCV threshold=train 75th percentile (3.00%),logreg.py,3.0,0.8125,0.0,0.0,0.0,0.86,0.04,,

@@ -1,0 +1,26 @@
+UNIFIED MODEL EVALUATION SUMMARY
+================================================================================
+All regression models were evaluated using the same repo split and the same target scale:
+target = next-year layoff percentage points, converted from log1p target CSVs.
+
+Best final test regression model:
+  Baseline: global median (Baseline)
+  MAE = 0.1250 percentage points
+  RMSE = 0.6322 percentage points
+
+Best validation regression model:
+  Baseline: current-year layoff pct (Baseline)
+  MAE = 3.1469 percentage points
+  RMSE = 9.5584 percentage points
+
+Best classification model by test ROC AUC:
+  Repo XGBoost Classifier | ROC AUC = 0.9896 | F1 = 0.0889
+Best classification model by test F1:
+  Repo SVM | F1 = 0.1481 | ROC AUC = 0.9115
+
+Output files:
+  unified_regression_validation_results.csv
+  unified_regression_test_results.csv
+  unified_regression_predictions.csv
+  unified_classification_results.csv
+  unified_model_audit_summary.txt
