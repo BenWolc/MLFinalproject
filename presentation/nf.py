@@ -124,4 +124,4 @@ for col in model_cols:
     print(f"  R²:   {r2:.3f}")
 
 print("\n── Side-by-side predictions ──")
-print(preds[["unique_id", "ds", "y"] + model_cols].head(15))
+print(preds[["unique_id", "ds", "y"] + model_cols])

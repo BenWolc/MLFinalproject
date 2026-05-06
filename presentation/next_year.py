@@ -23,7 +23,7 @@ from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 from sklearn.svm import SVC
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import StratifiedKFold, cross_val_score
-from sklearn.metrics import (classification_report, roc_auc_score,
+from sklearn.metrics import (classification_report, roc_auc_score, precision_score, recall_score,
                              accuracy_score, f1_score, confusion_matrix)
 from sklearn.pipeline import Pipeline
 import xgboost as xgb
@@ -44,9 +44,9 @@ LEAKY = ["employees_end", "net_change", "attrition_rate_pct",
 def drop_leaky(df):
     return df.drop(columns=[c for c in LEAKY if c in df.columns])
 
-X_train    = drop_leaky(X_train)
-X_validate = drop_leaky(X_validate)
-X_test     = drop_leaky(X_test)
+# X_train    = drop_leaky(X_train)
+# X_validate = drop_leaky(X_validate)
+# X_test     = drop_leaky(X_test)
 
 # Combine train + validate for cross-validation
 # (gives more data for CV while still keeping test set untouched)
@@ -115,6 +115,11 @@ cv_results = []
 for name, model in models.items():
     auc_scores = cross_val_score(model, X_trainval, y_trainval_clf,
                                   cv=cv, scoring="roc_auc")
+    
+    recall_scores = cross_val_score(model, X_trainval, y_trainval_clf,
+                                  cv=cv, scoring="recall")
+    precision_scores = cross_val_score(model, X_trainval, y_trainval_clf,
+                                  cv=cv, scoring="precision")
     f1_scores  = cross_val_score(model, X_trainval, y_trainval_clf,
                                   cv=cv, scoring="f1")
     acc_scores = cross_val_score(model, X_trainval, y_trainval_clf,
@@ -127,6 +132,8 @@ for name, model in models.items():
         "CV_ROC_AUC": round(auc_scores.mean(), 4),
         "CV_F1": round(f1_scores.mean(), 4),
         "CV_Accuracy": round(acc_scores.mean(), 4),
+        "CV_Recall": round(recall_scores.mean(), 4),
+        "CV_Precision": round(precision_scores.mean(), 4),
     })
 
 # ── Pick best model by ROC-AUC and evaluate on test set ───────────────────────
@@ -170,12 +177,16 @@ for name, model in models.items():
     auc = roc_auc_score(y_test_clf, probs)
     f1  = f1_score(y_test_clf, preds, zero_division=0)
     acc = accuracy_score(y_test_clf, preds)
+    precision = precision_score(y_test_clf, preds)
+    recall = recall_score(y_test_clf, preds)
     print(f"{name:<25} {auc:.4f}     {f1:.4f}   {acc:.4f}")
     test_results.append({
         "Model": name,
         "Test_ROC_AUC": round(auc,4),
         "Test_F1": round(f1,4),
-        "Test_Accuracy": round(acc,4)
+        "Test_Accuracy": round(acc,4),
+        "Test_precision": round(precision,4),
+        "Test_recall": round(recall,4)
     })
 
 # ── Feature importance from Random Forest ─────────────────────────────────────
